@@ -5,11 +5,14 @@ using namespace std;
 
 struct UnionFind{
     vector<long long> par;
+    vector<long long> size;
 
     UnionFind(long long n) : par(n){
+        //initialization
         for(long long i = 0; i < n; i++){
             par[i] = i;
         }
+        size.resize(n, 1);
     }
 
     long long root(long long x){
@@ -27,6 +30,7 @@ struct UnionFind{
         }
 
         par[rx] = ry;
+        size[ry] += size[rx]; 
     }
 
     bool same(long long x, long long y){
@@ -34,6 +38,12 @@ struct UnionFind{
         long long ry = root(y);
         return rx == ry;
     }
+
+    long long treeSize(long long x){
+        //group size
+        return size[root(x)];
+    }
 };
+
 
 int main(){}
