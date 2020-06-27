@@ -166,6 +166,17 @@ bool is_prime(const unsigned n){
 
     return true;
 }
+/*約数の個数を求める　O(nlogn)*/
+vector<long long> num_divisors_table(long long n){
+    vector<long long> table(n+1, 0);
+
+    for(long long i = 1; i <= n; i++){
+        for(long long j = i; j <= n; j = j+ i){
+            table[j] += 1;
+        }
+    }
+    return table;
+}
 /*素因数分解の素因数の数を調べる　書き換えれば素因数分解できる*/
  for(long long i = 2; i*i <= g+1; i++){
         if(num % i != 0){
