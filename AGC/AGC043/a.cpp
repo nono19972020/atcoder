@@ -1,80 +1,66 @@
 #include <iostream>
 #include <cstdio>
-#include <queue>
+#include <vector>
 using namespace std;
 
 int main(){
-    int h, w;
+    long long h, w;
     cin >> h >> w;
 
     char maze[h][w];
-    int distance[h][w];
-    int count[h][w];
 
-    for(int y = 0; y < h; y++){
-        for(int x = 0; x < w; x++){
-            cin >> maze[y][x];
-            distance[y][x] = -1;
+    for(long long i = 0; i < h; i++){
+        for(long long j = 0; j < w; j++){
+            cin >> maze[i][j];
         }
     }
 
-    distance[0][0] = 0;
-    queue<pair<int, int> > q;
+    vector<vector<long long> > dp(h, vector<long long>(w, 1e9));
 
-    q.push(make_pair(0,0));
-
-
-    while(!q.empty()){
-        pair<int, int> top = q.front();
-        q.pop();
-
-        if(maze[top.first][top.second] == '.'){
-            if(top.first-1 >= 0 and top.second-1 >= 0){
-                count[top.first][top.second] = min(count[top.first-1][top.second], count[top.first][top.second-1]);
-            }
-            else if(top.first-1 >= 0 and top.second-1 < 0){
-                count[top.first][top.second] = count[top.first-1][top.second];
-            }
-            else if(top.first-1 < 0 and top.second-1 >= 0){
-                count[top.first][top.second] =  count[top.first][top.second-1];
-            }
-            else if(top.first-1 < 0 and top.second-1 < 0){
-                //printf("a\n");
-                count[top.first][top.second] = 0;
-            }
-        }
-        else{
-            if(top.first-1 >= 0 and top.second-1 >= 0){
-                count[top.first][top.second] = min(count[top.first-1][top.second], count[top.first][top.second-1]);
-            }
-            else if(top.first-1 >= 0 and top.second-1 < 0){
-                count[top.first][top.second] = count[top.first-1][top.second];
-            }
-            else if(top.first-1 < 0 and top.second-1 >= 0){
-                count[top.first][top.second] =  count[top.first][top.second-1];
-            }
-            else if(top.first-1 < 0 and top.second-1 < 0){
-                 //printf("b\n");
-                count[top.first][top.second] = 1;
-            }
-        }
-
-        //printf("y %d x %d count %d\n", top.first, top.second, count[top.first][ top.second]);
-   
-        if(top.first+1 < h and distance[top.first+1][top.second] == -1){
-            q.push(make_pair(top.first+1, top.second));
-            distance[top.first+1][top.second] = distance[top.first][top.second] + 1;
-        }
-
-        if(top.second+1 < w and distance[top.first][top.second+1] == -1){
-            q.push(make_pair(top.first, top.second+1));
-            distance[top.first][top.second+1] = distance[top.first][top.second] + 1;
-        }
-
+    if(maze[0][0] == '#'){
+        dp[0][0] = 1;
+    }
+    else{
+        dp[0][0] = 0;
     }
 
-    //cout << count[0][0] << endl;
-    cout << count[h-1][w-1] << endl;
+    for(long long i = 0; i < h; i++){
+        for(long long j = 0; j < w; j++){
+            long long nx, ny;
+            nx = j;
+            ny = i + 1;
+            if(ny < h){
+                if(maze[ny][nx] == '.'){
+                    dp[ny][nx] = min(dp[ny][nx], dp[i][j]);
+                }
+                else{
+                    if(maze[i][j] == '.'){
+                        dp[ny][nx] = min(dp[ny][nx], dp[i][j]+1);
+                    }
+                    else{
+                        dp[ny][nx] = min(dp[ny][nx], dp[i][j]);
+                    }
+                }
+            }
+            
+            nx++;
+            ny--;
+            if(nx < w){
+                if(maze[ny][nx] == '.'){
+                    dp[ny][nx] = min(dp[ny][nx], dp[i][j]);
+                }
+                else{
+                    if(maze[i][j] == '.'){
+                        dp[ny][nx] = min(dp[ny][nx], dp[i][j]+1);
+                    }
+                    else{
+                        dp[ny][nx] = min(dp[ny][nx], dp[i][j]);
+                    }   
+                }
+            }
+        }
+    }
 
+    cout << dp[h-1][w-1] << endl;
     return 0;
 }
