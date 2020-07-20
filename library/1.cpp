@@ -229,16 +229,6 @@ vector<pair<long long, long long> > prime_factorize(long long n) {
     return res;
 }
 
-/*ワーシャルフロイド*/
-void warshall_floyd(long long n){
-    for(long long k = 0;k < n;k++){ /*経由する頂点*/
-        for(long long i = 0;i < n;i++){ /*始点*/
-            for(long long j = 0;j < n;j++){ /*終点*/
-                d[i][j]=min(d[i][j],d[i][k]+d[k][j]); /*距離*/
-            }
-        }
-    }
-}
 /*尺取法*/
     long long count = 0;
     long long right = 0;
