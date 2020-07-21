@@ -1,144 +1,50 @@
 #include <iostream>
 #include <cstdio>
-#include <set>
+#include <vector>
 using namespace std;
 
 int main(){
     string s;
     cin >> s;
 
-    set<string> S;
-    set<string> H;
-    set<string> D;
-    set<string> C;
+    vector<string> t;
 
-    long long i = 0;
-    char loyal_mark;
-    while(i < s.size()){
-        if(S.size() == 5 || H.size() == 5 ||D.size() == 5 || C.size() == 5){
-            if(S.size()== 5){
-                loyal_mark = 'S';
-            }
-            else if(H.size() == 5){
-                loyal_mark = 'H';
-            }
-            else if(D.size() == 5){
-                loyal_mark = 'D';
-            }
-            else if(C.size() == 5){
-                loyal_mark = 'C';
-            }
-            break;
-        }
+    long long l = 0, r = 0;
 
-        if(s[i] == 'S' ||s[i] == 'H' || s[i] == 'D' || s[i] == 'C'){
-            char mark = s[i];
-            i++;
-            if(s[i] != '1'){
-                if(s[i] == 'A'||s[i] == 'K' || s[i] == 'J' ||s[i] == 'Q'){
-                    string card;
-                    card = mark + s[i];
-                    if(mark == 'D'){
-                        D.insert(card);
-                    }
-                    else if(mark == 'C'){
-                        C.insert(card);
-                    }
-                    else if(mark == 'H'){
-                        H.insert(card);
-                    }
-                    else if(mark == 'S'){
-                        S.insert(card);
-                    }
-                }
-            }
-            else{
-                string card;
-                card.push_back(mark);
-                card.push_back('1');
-                card.push_back('0');
-                if(mark == 'D'){
-                    D.insert(card);
-                }
-                else if(mark == 'C'){
-                    C.insert(card);
-                }
-                else if(mark == 'H'){
-                    H.insert(card);
-                }
-                else if(mark == 'S'){
-                    S.insert(card);
-                }
-                i++;
-            }
-        }
-        i++;
+    while(l < (long long) s.size()){
+        r++;
+        if(r+1 < s.size() and '0' <= s[r+1] and s[r+1] <= '9') r += 2;
+        else r++;
+
+        t.push_back(s.substr(l, r-l));
+        l = r;
     }
 
-    long long count = 0;
-    string ans;
-    //printf("%c\n", loyal_mark);
-    set<string> hand;
-    i = 0;
-    while(i < s.size()){
-        if(hand.size() == 5){
-            break;
-        }
+    string mark[] = {"S", "H", "D", "C"};
+    string num[] = {"10", "J", "Q", "K", "A"};
+    string ans = s;
+    for(long long i = 0; i < 4; i++){
+        long long cnt = 0;
+        string tmp = "";
 
-        if(s[i] == loyal_mark){
-            i++;
-            string card;
-            card.push_back(loyal_mark);
-            if(s[i] == '1'){
-                card.push_back('1');
-                card.push_back('0');
-                if(hand.find(card) == hand.end()){
-                    hand.insert(card);
-                }
-                else{
-                    ans.push_back(loyal_mark);
-                    ans.push_back('1');
-                    ans.push_back('0');
-                }
-                i++;
+        for(auto s: t){
+            if(cnt == 5) break;
+            
+            bool ok = false;
+            for(long long j = 0; j < 5; j++){
+                if(s == mark[i] + num[j]) ok = true;
             }
-            else{
-
-                if(s[i] == 'A' || s[i] == 'J' || s[i] == 'K' || s[i] == 'Q'){
-                    card.push_back(s[i]);
-                    if(hand.find(card) == hand.end()){
-                        hand.insert(card);
-                    }
-                    else{
-                        ans.push_back(loyal_mark);
-                        ans.push_back(s[i]);
-                    }
-                    
-                }
-                else{
-                    ans.push_back(loyal_mark);
-                    ans.push_back(s[i]);
-                }
+            if(ok == true){
+                cnt++;
+                continue;
             }
+            tmp += s;
         }
-        else{
-            ans.push_back(s[i]);
-            i++;
-            ans.push_back(s[i]);
-            if(s[i] == '1'){
-                ans.push_back('0');
-                i++;
-            }
-        }
-        i++;
+        if(tmp.size() < ans.size()) ans = tmp;//最小値を更新
     }
 
-    if(ans == ""){
-        cout << '0' << endl;
-    }
-    else{
-        cout << ans << endl;
-    }
-    
+    if(ans == "") cout << '0' << endl;
+    else cout << ans << endl;
+
     return 0;
 }
