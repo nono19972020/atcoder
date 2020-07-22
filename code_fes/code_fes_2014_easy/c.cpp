@@ -4,29 +4,9 @@
 #include <queue>
 using namespace std;
 
-/*ワーシャルフロイド*/
-//全ての組み合わせに対して求める
-void warshall_floyd(long long n){
-    for(long long k = 0;k < n;k++){ /*経由する頂点*/
-        for(long long i = 0;i < n;i++){ /*始点*/
-            for(long long j = 0;j < n;j++){ /*終点*/
-                d[i][j]=min(d[i][j],d[i][k]+d[k][j]); /*距離*/
-            }
-        }
-    }
-}
-
-/*ダイクストラ法*/
-//始点sに対して求める
-//使い方 graph g(n) n頂点のグラフ作成
-// g.add_edge(a, b, cost) g.add_edge(b, a, cost) コストcの辺を加える
-// g.dijkstra(s) 頂点sから各頂点の最短経路を求める
-// long long dist = g.d[i] 頂点sから頂点iまでの最短距離
-//autoのwarningは無視しても大丈夫 
 struct edge{long long  to, cost;};
 typedef pair<long long,long long> P;
 
-long long INF = 1e15;
 struct graph{
   long long V;
   vector<vector<edge> > G;
@@ -40,7 +20,7 @@ struct graph{
     G.resize(V);
     d.resize(V);
     for(long long i = 0; i < V; i++){
-        d[i] = INF;
+        d[i] = 1e15;
     }
   }
   void add_edge(long long s, long long t, long long cost){
@@ -50,7 +30,7 @@ struct graph{
   }
   void dijkstra(long long s){
     for(long long i = 0; i < V; i++){
-        d[i] = INF;
+        d[i] = 1e15;
     }
     d[s] = 0;
     priority_queue<P,vector<P>, greater<P> > que;
@@ -68,3 +48,38 @@ struct graph{
     }
   }
 };
+
+int main(){
+    long long n, m;
+    cin >> n >> m;
+
+    long long s, t;
+    cin >> s >> t;
+
+    graph g(n);
+
+    for(long long i = 0; i < m; i++){
+        long long x, y, d;
+        cin >> x >> y >> d;
+        g.add_edge(x-1, y-1, d);
+        g.add_edge(y-1, x-1, d);
+    }
+
+    //g.dijkstra(s-1);
+    //long long dist = g.d[t-1];
+
+    for(long long i = 0; i < n; i++){
+        if(i == s-1|| i == t-1){
+            continue;
+        }
+
+        g.dijkstra(i);
+        if(g.d[t-1] == g.d[s-1]){
+            if(g.d[s-1] == 1e15) continue;
+            cout << i + 1 << endl;
+            return 0;
+        }
+    }
+    printf("-1\n");
+    return 0;
+}
