@@ -14,10 +14,12 @@ int main(){
 
     string vv;
 
+    //cout << km << endl;
     long long a;
-    if(km < 0.1) vv = "00";
+    if(km < 0.1) vv = "00";//cout << km << endl;
     else if(0.1 <= km and km <= 5){
         km = km * 10;
+        cout << km << endl;
         vv = to_string((long long)km);
         if(vv.size() == 1) vv = '0' + vv;
     }
