@@ -50,7 +50,6 @@ int main(){
     long long n, m, k;
     cin >> n >> m >> k;
 
-    set<pair<long long, long long> > friend_list;
     vector<set<long long> > list(n);
 
     UnionFind tree(n);
@@ -63,8 +62,7 @@ int main(){
         list[b].insert(a);
         tree.unite(a, b);
     }
-    set<pair<long long, long long> > block_list;
-
+    
     for(long long i = 0; i < k; i++){
         long long c, d;
         cin >> c >> d;

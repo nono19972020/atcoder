@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdio>
 #include <vector>
+#include <set>
 using namespace std;
 
 struct UnionFind{
@@ -45,8 +46,37 @@ struct UnionFind{
     }
 };
 
-//使い方
-// UnionFind tree(n); 定義をする
-//合併する tree.unite(a, b);
-//同じか確認する tree.same(a, b); true or false
-//属しているグループのサイズを確認する tree.treeSize(i)
+int main(){
+    long long n, m, k;
+    cin >> n >> m >> k;
+
+    UnionFind tree(n);
+    vector<set<long long> > list(n);
+    for(long long i = 0; i < m; i++){
+        long long a, b;
+        cin >> a >> b;
+        a--;
+        b--;
+        tree.unite(a, b);
+        list[a].insert(b);
+        list[b].insert(a);
+    }
+    
+    for(long long i = 0; i < k; i++){
+        long long c, d;
+        cin >> c >> d;
+        c--;
+        d--;
+        if(tree.same(c, d) == true){
+            list[c].insert(d);
+            list[d].insert(c);
+        }
+    }
+
+    
+    for(long long i = 0; i < n; i++){
+        printf("%lld ", tree.treeSize(i)- list[i].size()- 1);
+    }
+    printf("\n");
+    return 0;
+}
