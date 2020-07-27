@@ -112,16 +112,6 @@ int ctoi(const char c){
   }
 }
 
-/*
-//bit全探索
-bit < (1 << n)が2のn乗
-
-for(int bit = 0; bit < (1 << n); bit++){
-  if(bit & (1 << j)){
-    bitをjに被せた時の処理を書く
-  }
-}
-*/
 区間分割の方法
 
 int count = 0;
