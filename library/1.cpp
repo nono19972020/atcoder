@@ -219,30 +219,6 @@ vector<pair<long long, long long> > prime_factorize(long long n) {
     return res;
 }
 
-/*尺取法*/
-    long long count = 0;
-    long long right = 0;
-    long long sum = 0;
-    for(long long left = 0; left < n; left++){
-        while(right < n and sum < k){
-            sum += a[right];
-            right++;
-        }
-        if(sum < k){
-            break;
-        }
-
-        count += n-right+1;
-
-        if(right == left){
-            right++;
-        }
-        else{
-            sum -= a[left];
-        }
-
-    }
-
 /*累乗計算の高速化
 繰り返し二乗法
 */
