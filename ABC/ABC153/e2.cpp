@@ -12,7 +12,6 @@ int main(){
     
     
     for(long long i = 0; i < n; i++) cin >> ab[i].first >> ab[i].second;
-    sort(ab.begin(), ab.end());
 
     vector<long long> dp(h+1, 1e9);
     dp[0] = 0;
