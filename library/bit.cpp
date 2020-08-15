@@ -44,7 +44,7 @@ int main(){
     for(long long bit = 0; bit < (1 << 10); bit++){
       //bitを被せる数だけ被せる
         for(long long mask = 0; mask < 10; mask++){
-          //bitを被せた時にそのものをmaskとしてどうするかを書く
+          //bitを被せた時にそのものをmaskとしてどうするかを書く 店を開けるかどうかやスイッチをon/off
           //bitとmaskの数は同じ
             if(bit & (1 << mask)) open[mask] = true;
             else open[mask] = false;
