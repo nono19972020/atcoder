@@ -1,16 +1,3 @@
-
-//bit全探索
-bit < (1 << n)が2のn乗
-
-for(int bit = 0; bit < (1 << n); bit++){
-  if(bit & (1 << mask)){
-    bitをmaskに被せた時の処理を書く
-  }
-
-  //問題文の処理を書く
-}
-
-
 #include <iostream>
 #include <cstdio>
 #include <vector>
@@ -42,14 +29,10 @@ int main(){
     long long maxv = -1e15;
 
     for(long long bit = 0; bit < (1 << 10); bit++){
-      //bitを被せる数だけ被せる
         for(long long mask = 0; mask < 10; mask++){
-          //bitを被せた時にそのものをmaskとしてどうするかを書く
-          //bitとmaskの数は同じ
             if(bit & (1 << mask)) open[mask] = true;
             else open[mask] = false;
         }
-        //問題文の処理を書く
         if(open == close) continue;
 
         long long money = 0;
