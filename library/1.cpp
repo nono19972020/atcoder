@@ -21,15 +21,6 @@ vector<vector<long long> > v(n+1);
 string sで空白ごと標準入力を受け取る方法
 getline(cin, s);
 
-ユークリッドの互除法 
-long long gcd(long long a, long long b){
-  if(b== 0){
-    return a;
-  }
-  return gcd(b, a%b);
-}
-
-gcd(a, b) = gcd(a-b, b)
 /* 累積和
 隣接するk個の和の最大値を求めるときなど
 int n;
@@ -49,6 +40,8 @@ S[right] - S[left]
 */
 
 //最大公約数
+//ユークリッドの互除法 
+//gcd(a, b) = gcd(a-b, b)
 int gcd(int a, int b)
 {
    if (a%b == 0)
@@ -95,24 +88,8 @@ int main() {
   });
 }
 
-//文字の数字をint型の数字に変換する
-int ctoi(const char c){
-  switch(c){
-    case '0': return 0;
-    case '1': return 1;
-    case '2': return 2;
-    case '3': return 3;
-    case '4': return 4;
-    case '5': return 5;
-    case '6': return 6;
-    case '7': return 7;
-    case '8': return 8;
-    case '9': return 9;
-    default : return -1;
-  }
-}
 
-区間分割の方法
+//区間分割の方法
 
 int count = 0;
 
@@ -156,6 +133,7 @@ bool is_prime(const unsigned n){
 
     return true;
 }
+
 /*約数の個数を求める　O(nlogn)*/
 vector<long long> num_divisors_table(long long n){
     vector<long long> table(n+1, 0);
@@ -167,6 +145,7 @@ vector<long long> num_divisors_table(long long n){
     }
     return table;
 }
+
 /*素因数分解の素因数の数を調べる　書き換えれば素因数分解できる*/
  for(long long i = 2; i*i <= g+1; i++){
         if(num % i != 0){
@@ -236,6 +215,7 @@ long long modpow(long long x, long long n) {
         return modpow((x*x)%mod, n/2)%mod;
     }
 }
+
 /*コンビネーションの高速化
 フェルマーの小定理と逆元の利用*/
 long long comb(long long n, long long k){
@@ -251,9 +231,9 @@ long long comb(long long n, long long k){
         y = y%mod;
     }
 
-    y = modpow(y, mod-2);
-
-    return x*y%mod;
+    y = modpow(y, mod-2);//フェルマーの小定理と逆元を使うことで、計算できない割り算を掛け算にして計算可能にする
+    //yで割りたい時はy^(mod-2)を掛ければ良い
+    return x*y%mod;//計算可能
 }
 
 /*約数を求める*/
