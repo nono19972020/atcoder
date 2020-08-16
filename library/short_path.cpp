@@ -16,6 +16,18 @@ void warshall_floyd(long long n){
     }
 }
 
+/*ワーシャルフロイド　経路復元*/
+//a[i][j]は最短経路である
+//他の頂点を軽油して距離が同じなら(i, j)間の道はいらない
+//sumはb[i][j] == 0であるa[i][j]を全部足して2で割ればでる
+for(long long k = 0; k < n; k++){
+        for(long long i = 0; i < n; i++){
+            for(long long j = 0; j < n; j++){
+                if(i != j and j != k and k != i and a[i][j] == a[i][k] + a[k][j]) b[i][j] = 1;
+            }
+        }
+}
+
 /*ダイクストラ法*/
 //始点sに対して求める
 //使い方 graph g(n) n頂点のグラフ作成

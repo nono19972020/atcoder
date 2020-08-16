@@ -23,7 +23,7 @@ int main(){
 
     for(long long i = 0; i < n; i++){
         if(used[i] == true) continue;
-        
+
         vector<long long> loop;
         loop.push_back(i);
         long long now = i;
