@@ -42,21 +42,13 @@ S[right] - S[left]
 //最大公約数
 //ユークリッドの互除法 
 //gcd(a, b) = gcd(a-b, b)
-int gcd(int a, int b)
-{
-   if (a%b == 0)
-   {
-       return(b);
-   }
-   else
-   {
-       return(gcd(b, a%b));
-   }
+long long gcd(long long a, long long b) {
+   if (a%b == 0) return b;
+   else return gcd(b, a%b);
 }
 
 //最小公倍数
-int lcm(int a, int b)
-{
+long long lcm(long long a, long long b) {
    return a * b / gcd(a, b);
 }
 
