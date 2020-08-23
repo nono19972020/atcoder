@@ -89,7 +89,7 @@ int main(){
         //普通の移動 cost 0
         for(long long i = 0; i < 4; i++){
             if(0 <= top.first+dy[i] and top.first+dy[i] < h and 0 <= top.second+dx[i] and top.second+dx[i] < w and maze[top.first+dy[i]][top.second+dx[i]] == '.' and cost[top.first+dy[i]][top.second+dx[i]] > cost[top.first][top.second]){
-                //普通の移動ができる点が、もしワープの方に入った点はここで更新する
+                //普通の移動ができる点がもしワープの方に入ったら、ここで更新する
                 cost[top.first+dy[i]][top.second+dx[i]] = cost[top.first][top.second];
                 q.push_front(make_pair(top.first+dy[i], top.second+dx[i]));//cost 0は push_front
             }
