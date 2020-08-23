@@ -49,6 +49,7 @@ int main(){
 //01-bfs
 //ノーコストの手段で移動する
 //何らかのコストや回数制限のある手段で移動する
+//dequeを使用
 #include <iostream>
 #include <cstdio>
 #include <vector>
