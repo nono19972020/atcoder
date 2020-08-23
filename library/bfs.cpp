@@ -99,7 +99,7 @@ int main(){
             for(long long j = -2; j <= 2; j++){
                 if(i == 0 and j == 0) continue;
 
-                if(0 <= top.first+i and top.first+i < h and 0 <= top.second+j and top.second+j < w and maze[top.first+i][top.second+j] == '.' and cost[top.first+i][top.second+j] > cost[top.first][top.second]){
+                if(0 <= top.first+i and top.first+i < h and 0 <= top.second+j and top.second+j < w and maze[top.first+i][top.second+j] == '.' and cost[top.first+i][top.second+j] > cost[top.first][top.second] + 1){
                     cost[top.first+i][top.second+j] = cost[top.first][top.second] + 1;
                     q.push_back(make_pair(top.first+i, top.second+j));//cost 1は push_back
                 }
