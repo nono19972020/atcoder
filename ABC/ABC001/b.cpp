@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdio>
+#include <atcoder/all>
 using namespace std;
 
 int main(){
