@@ -7,3 +7,11 @@ I started AtCoder since April in 2020.
 Now color is brown.
 I upload atcoder problems which I solved to github.
 I use c++. I want get algorithm and coding skill.
+
+# git
+gitにpushするためのスクリプトを書きました。
+このコマンドでgitにpushできます。
+
+```Shell:
+bash git_push.sh
+```
