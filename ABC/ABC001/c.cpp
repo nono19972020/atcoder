@@ -19,6 +19,8 @@ int main(){
 
     long double degree = (long double)dir/10;
 
+
+
    //long double wind = round_n(w/60, 2.0) + 0.001;
     long double wind = w/60+0.001;
     //printf("wind %.10Lf\n", wind);
