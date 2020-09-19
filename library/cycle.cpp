@@ -4,6 +4,11 @@
 #include <set>
 using namespace std;
 
+/*cycle検知の問題
+これはABC179 e
+類似問題 ABC167 d
+*/
+
 long long f(long long x, long long m){
     return (x *x) % m;
 }
