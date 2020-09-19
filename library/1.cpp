@@ -127,6 +127,7 @@ bool is_prime(const unsigned n){
 }
 
 /*約数の個数を求める　O(nlogn)*/
+//1からnまでのそれぞれの数の約数の個数を求める
 vector<long long> num_divisors_table(long long n){
     vector<long long> table(n+1, 0);
 
