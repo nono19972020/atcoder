@@ -8,6 +8,8 @@ int value[n_max+1];
 int weight[n_max+1];
 int dp[n_max+1][w_max+1];
 
+//dp[n][w]が求めるvalueの最大値
+
 void knap(){
     for(int i = 1; i <= n; i++){
         dp[i][0] = 0;//初期化
@@ -25,7 +27,36 @@ void knap(){
     }
 }
 
-//dp[n][w]が求めるvalueの最大値
+//ナップザック 問題の設定は上と同じだが、 W <= 1e9となっていると上では解けない
+//dp[i][j] i番目までの商品で価値j以上となるような最小の重さ　
+#include <vector>
+long long N, W;
+vector<vector<long long> > dp(101, vector<long long>(100001));
+vector<long long> w(101);
+vector<long long> v(101);
+
+void knap(){
+    
+    dp.assign(101, vector<long long>(100001, 1e12));//初期化
+    dp[0][0] = 0;//商品なし価値0なら最小の重さは0
+
+    for(long long i = 1; i <= N; i++){
+        for(long long j = 0; j <= 100000; j++){
+            if(v[i] <= j) dp[i][j] = min(dp[i-1][j], dp[i-1][j - v[i]] + w[i]);
+            else dp[i][j] = dp[i-1][j];
+        }
+    }
+}
+
+knap();
+
+//価値を最大化したいので、valueをmaxから走査して、初めて重さがW以下になるvalueがans
+for(long long value = 100000; value >= 0; value--){
+    if(W >= dp[N][value]){
+        printf("%lld\n", value);
+        return 0;
+    }
+}
 
 //価値に制限があって重さを最小にするナップサック.価値を最大化する
 void knap_value(){
