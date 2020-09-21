@@ -288,6 +288,32 @@ int lcs(){
 
 }
 
+//lcsの文字列の求め方
+long long len = lcs();
+
+long long i = y.size();
+long long j = x.size();
+i--;
+j--;
+len--;
+   
+string ans;
+
+while(len >= 0){
+    if(x[j] == y[i]){  
+        ans.push_back(y[i]);
+        i--;
+        j--;
+        len--;
+    }
+    else if(dp[i][j] == dp[i-1][j]) i--;
+    else j--;
+}
+
+reverse(ans.begin(), ans.end());
+cout << ans << endl;
+
+
 //lis 最長増加部分列
 #define MAX 100000
 int n;
