@@ -6,6 +6,23 @@ using namespace std;
 
 /*ワーシャルフロイド*/
 //全ての組み合わせに対して求める
+// warshall_floyd(n)で全ての組み合わせで最短距離を計算する
+// d[start][goal]でstart, goal間の最短距離が求まる
+
+//距離dの初期化
+vector<vector<long long> > d(300, vector<long long>(300, 1e9));
+for(long long i = 0; i < n; i++){
+        d[i][i] = 0;
+}
+
+for(long long i = 0; i < m; i++){
+  long long a, b, t;
+  cin >> a >> b >> t;
+
+  d[a-1][b-1] = t;
+  d[b-1][a-1] = t;
+}
+
 void warshall_floyd(long long n){
     for(long long k = 0;k < n;k++){ /*経由する頂点*/
         for(long long i = 0;i < n;i++){ /*始点*/
