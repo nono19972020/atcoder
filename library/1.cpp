@@ -21,6 +21,8 @@ vector<vector<long long> > v(n+1);
 string sで空白ごと標準入力を受け取る方法
 getline(cin, s);
 
+cin.ignore();//必要になる場合がある
+
 /* 累積和
 隣接するk個の和の最大値を求めるときなど
 int n;
