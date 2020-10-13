@@ -28,5 +28,4 @@ int main(){
     else printf("No\n");
 
     return 0;
-
 }
