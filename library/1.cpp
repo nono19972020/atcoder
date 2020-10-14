@@ -9,7 +9,6 @@ matrix[n][n]だとnが大きすぎるとメモリオーバーしてエラーに�
 
 vector<vector<long long> > v(n+1);
     
-
     for(long long i = 0; i < m; i++){
         long long a, b;
         cin >> a >> b;
@@ -52,34 +51,6 @@ long long gcd(long long a, long long b) {
 //最小公倍数
 long long lcm(long long a, long long b) {
    return a * b / gcd(a, b);
-}
-
-
-
-#include <functional>
-#include <iostream>
-
-void recursive_comb(int *indexes, int s, int rest, std::function<void(int *)> f) {
-  if (rest == 0) {
-    f(indexes);
-  } else {
-    if (s < 0) return;
-    recursive_comb(indexes, s - 1, rest, f);
-    indexes[rest - 1] = s;
-    recursive_comb(indexes, s - 1, rest - 1, f);
-  }
-}
-
-// nCkの組み合わせに対して処理を実行する
-void foreach_comb(int n, int k, std::function<void(int *)> f) {
-  int indexes[k];
-  recursive_comb(indexes, n - 1, k, f);
-}
-
-int main() {
-  foreach_comb(5, 3, [](int *indexes) {
-    std::cout << indexes[0] << ',' << indexes[1] << ',' << indexes[2] << std::endl;
-  });
 }
 
 
@@ -191,21 +162,6 @@ vector<pair<long long, long long> > prime_factorize(long long n) {
     }
     if (n != 1) res.push_back(make_pair(n, 1));
     return res;
-}
-
-/*modを使わないコンビネーション　遅いかも*/
-long long comb(int n, int r) {
-  vector<vector<long long> > v(n + 1,vector<long long>(n + 1, 0));
-  for (int i = 0; i < v.size(); i++) {
-    v[i][0] = 1;
-    v[i][i] = 1;
-  }
-  for (int j = 1; j < v.size(); j++) {
-    for (int k = 1; k < j; k++) {
-      v[j][k] = (v[j - 1][k - 1] + v[j - 1][k]);
-    }
-  }
-  return v[n][r];
 }
 
 /*約数を求める*/
