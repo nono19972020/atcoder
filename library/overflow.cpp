@@ -1,8 +1,10 @@
+///オーバーフロー対策
 #include <iostream>
 #include <cstdio>
 #include <vector>
 using namespace std;
 
+//このままだと出力できないのでこれを書く
 std::ostream &operator<<(std::ostream &dest, __int128_t value) {
   std::ostream::sentry s(dest);
   if (s) {
@@ -27,9 +29,9 @@ std::ostream &operator<<(std::ostream &dest, __int128_t value) {
 }
 
 int main(){
-    __int128_t x, y, a, b;
+    __int128_t x, y, a, b;//これは標準入力できない
 
-    long long X, Y, A, B;
+    long long X, Y, A, B;//long longで受け取って__int_128_t に代入する
     cin >> X >> Y >> A >> B;
 
     x = X;
