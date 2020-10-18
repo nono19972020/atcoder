@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #get date as yyyy-mm-dd 標準出力を受け取る
-stdout=`date +%F` 
+stdout=`date +%F`
 
 #差分をadd
 git add . 
