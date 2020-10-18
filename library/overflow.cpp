@@ -1,4 +1,10 @@
-///オーバーフロー対策
+/*
+long longは64bitなので最大値は2^64 - 1 =9,223,372,036,854,775,807
+~ 9e18 < 1e19　これを使ってオーバーフローを対策する
+intは32bit 
+ */
+
+///__uint128_tを用いたオーバーフロー対策
 #include <iostream>
 #include <cstdio>
 #include <vector>
