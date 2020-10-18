@@ -3,13 +3,14 @@
 #include <vector>
 using namespace std;
 
+//グラフを定義
 using Graph = vector<vector<long long> >;
 Graph G;
 
 //vは現在見ている頂点、pはvの親
 void dfs(long long v, long long p){
     for(auto nv : G[v]){//autoは型推論をしてくれる。これはG[v]の要素を取り出してくれる
-        if(nv == p) continue;//親には行かない
+        if(nv == p) continue;//親には行かない 木はこれだけで十分 boolのvisitはいらない
         dfs(nv, v);
     }
 }
