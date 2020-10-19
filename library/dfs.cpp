@@ -59,3 +59,27 @@ int main(){
     printf("NO\n");
     return 0;
 }
+
+//dfsで距離の測り方
+
+long long n, m;
+
+long long dy[] = {1, 0, -1, 0};
+long long dx[] = {0, 1, 0, -1};
+
+vector<vector<long long> > maze(100, vector<long long>(100));
+long long ans = 0;
+
+void dfs(long long y, long long x, long long dist){
+    if(maze[y][x] == 0) return;
+
+    maze[y][x] = 0;//割る visit = trueでも良い
+
+    long long next = dist + 1;
+    for(long long i = 0; i < 4; i++){
+        if(0 <= y + dy[i] and y + dy[i] < m and 0 <= x + dx[i] and x + dx[i] < n) dfs(y + dy[i], x + dx[i], next);
+    }
+
+    maze[y][x] = 1;//もう一回来るかもしれないので直す visit = falseにする
+    ans = max(ans, dist + 1);//最大値の更新
+}
