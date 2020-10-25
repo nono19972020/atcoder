@@ -19,7 +19,7 @@ You can do git push by this command.
 bash git_push.sh
 ```
 
-# git push automatically
+# Automatical git push 
 上のコマンドを毎日打つのはめんどくさいので、crontabを使って毎日定時に自動でgit pushできるようにしました。
 やり方は[Qiitaの記事](https://qiita.com/nono19972020/items/563b2529be83576323e3)にまとめたので、ぜひ参考にしてみてください。
 
