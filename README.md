@@ -8,7 +8,7 @@ Now color is green.
 I upload atcoder problems which I solved to github.
 I use c++. I want get algorithm and coding skill.
 
-# git
+# Command for git push
 gitにpushするためのスクリプトを書きました。
 このコマンドでgitにpushできます。
 
