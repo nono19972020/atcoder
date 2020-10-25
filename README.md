@@ -12,6 +12,9 @@ I use c++. I want get algorithm and coding skill.
 gitにpushするためのスクリプトを書きました。
 このコマンドでgitにpushできます。
 
+I wrote shell script for git push.
+You can do git push by this command.
+
 ```Shell:
 bash git_push.sh
 ```
